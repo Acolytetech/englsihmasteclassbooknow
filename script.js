@@ -152,7 +152,86 @@ document.addEventListener("DOMContentLoaded", () => {
                     lightbox.classList.add("active");
                     document.body.style.overflow = "hidden"; // disable scrolling
                 }
-            });
+        });
+    }
+
+    // 5. Stat Counter Count-up on Scroll (Desktop only)
+    const statNumbers = document.querySelectorAll(".stat-number");
+    
+    // Indian number formatting helper (e.g., 2,49,497)
+    function formatIndianNumber(num) {
+        let x = Math.floor(num).toString();
+        if (x.length <= 3) return x;
+        let lastThree = x.substring(x.length - 3);
+        let otherNumbers = x.substring(0, x.length - 3);
+        let res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + lastThree;
+        return res;
+    }
+
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startCounting();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const trustBanner = document.querySelector(".trust-banner");
+    if (trustBanner && statNumbers.length > 0) {
+        statsObserver.observe(trustBanner);
+    }
+
+    function startCounting() {
+        statNumbers.forEach(stat => {
+            const target = parseFloat(stat.getAttribute("data-target"));
+            const decimals = parseInt(stat.getAttribute("data-decimals") || "0", 10);
+            const suffix = stat.getAttribute("data-suffix") || "";
+            const isIndian = stat.getAttribute("data-format") === "indian";
+            const duration = 1800; // 1.8 seconds animation
+            const startTime = performance.now();
+
+            function updateNumber(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Ease out quad
+                const easeProgress = progress * (2 - progress);
+                const currentValue = easeProgress * target;
+                
+                let formattedValue = "";
+                if (isIndian) {
+                    formattedValue = formatIndianNumber(currentValue);
+                } else if (decimals > 0) {
+                    formattedValue = currentValue.toFixed(decimals);
+                } else {
+                    formattedValue = Math.floor(currentValue).toString();
+                }
+                
+                stat.textContent = formattedValue + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    // Set final exact values
+                    let finalValue = "";
+                    if (isIndian) {
+                        finalValue = formatIndianNumber(target);
+                    } else if (decimals > 0) {
+                        finalValue = target.toFixed(decimals);
+                    } else {
+                        finalValue = target.toString();
+                    }
+                    stat.textContent = finalValue + suffix;
+                }
+            }
+            
+            requestAnimationFrame(updateNumber);
         });
     }
 });

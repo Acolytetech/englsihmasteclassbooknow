@@ -17,6 +17,34 @@
 </head>
 <body>
 
+    <!-- Triple Line Marquee Slider -->
+    <div class="triple-marquee-container">
+        <!-- Row 1: Outcomes (Left Scroll) -->
+        <div class="marquee-row marquee-left-row">
+            <div class="marquee-track track-left">
+                <span>SPEAK ENGLISH CONFIDENTLY <span class="marquee-separator">•</span></span>
+                <span>NO MORE FUMBLES OR HESITATION <span class="marquee-separator">•</span></span>
+                <span>GET A <span class="highlight-green">BIG SALARY HIKE</span> <span class="marquee-separator">•</span></span>
+                <span>100% PRACTICAL FORMULA <span class="marquee-separator">•</span></span>
+                <span>NO BORING GRAMMAR RULES <span class="marquee-separator">•</span></span>
+                <span>CRUSH INTERVIEWS & MEETINGS <span class="marquee-separator">•</span></span>
+                <span>ELIMINATE MTI & ACCENT ANXIETY <span class="marquee-separator">•</span></span>        
+                <span><span class="highlight-gold">₹49 TICKETS</span> ONLY (WORTH ₹999) <span class="marquee-separator">•</span></span>
+                <!-- <span>BACKED BY <span class="highlight-cyan">SHARK TANK INDIA</span> JUDGES <span class="marquee-separator">•</span></span>
+                <span><span class="highlight-green">2,49,497+</span> LEARNERS REACHED <span class="marquee-separator">•</span></span>
+                <span>11+ YEARS TRAINING EXPERIENCE <span class="marquee-separator">•</span></span>
+                <span>4.9★ AVERAGE RATING <span class="marquee-separator">•</span></span>
+                <span>100% LIVE INTERACTIVE EVENT <span class="marquee-separator">•</span></span>
+                <span>FREE BONUSES WORTH <span class="highlight-green">₹16,000</span> INCLUDED <span class="marquee-separator">•</span></span>
+                <span>LIMITED SEATS AVAILABLE <span class="marquee-separator">•</span></span>
+                <span>REGISTER NOW <span class="highlight-gold">LIVE TONIGHT</span> <span class="marquee-separator">•</span></span>
+                <span>PREMIUM WHATSAPP COMMUNITY INVITE <span class="marquee-separator">•</span></span>
+                <span>ONLY <span class="highlight-red">2 SEATS</span> LEFT <span class="marquee-separator">•</span></span>
+                <span>3-HOUR POWER PACKED EVENT <span class="marquee-separator">•</span></span> -->
+            </div>
+        </div>
+    </div>
+
     <!-- Header / Nav -->
     <header>
         <div class="container nav-container">
@@ -24,10 +52,10 @@
                 <img src="https://img.flexifunnels.com/images/1024/EliteTalkers_pn650_9000.png" alt="Elite Talkers Logo">
                 ELITE<span>TALKERS</span>
             </a>
-            <div class="urgency-badge">
+            <!-- <div class="urgency-badge">
                 <span class="urgency-dot"></span>
                 <span>Discount Active (Seats Limited)</span>
-            </div>
+            </div> -->
         </div>
     </header>
 
@@ -98,22 +126,65 @@
 
     <!-- Trust Stats Banner -->
     <div class="trust-banner">
-        <div class="container" style="display: flex; justify-content: space-around; width: 100%; flex-wrap: wrap; gap: 20px;">
+        <!-- Desktop layout: stats count up on scroll -->
+        <div class="trust-desktop-container">
             <div class="trust-item">
-                <h3>4.9★</h3>
+                <h3 class="stat-number" data-target="4.9" data-suffix="★" data-decimals="1">0.0★</h3>
                 <p>Average Rating</p>
             </div>
             <div class="trust-item">
-                <h3>2,49,497+</h3>
+                <h3 class="stat-number" data-target="249497" data-suffix="+" data-format="indian">0</h3>
                 <p>Learners Reached</p>
             </div>
             <div class="trust-item">
-                <h3>11+ Years</h3>
+                <h3 class="stat-number" data-target="11" data-suffix="+ Years">0</h3>
                 <p>Training Experience</p>
             </div>
             <div class="trust-item">
-                <h3>100% Live</h3>
+                <h3 class="stat-number" data-target="100" data-suffix="% Live">0</h3>
                 <p>Interactive Sessions</p>
+            </div>
+        </div>
+
+        <!-- Mobile layout: infinite sliding marquee -->
+        <div class="trust-mobile-container">
+            <div class="trust-mobile-row">
+                <div class="trust-mobile-track track-left">
+                    <div class="trust-mobile-item">
+                        <h3>4.9★</h3>
+                        <p>Average Rating</p>
+                    </div>
+                    <div class="trust-mobile-item">
+                        <h3>2,49,497+</h3>
+                        <p>Learners Reached</p>
+                    </div>
+                    <div class="trust-mobile-item">
+                        <h3>11+ Years</h3>
+                        <p>Training Experience</p>
+                    </div>
+                    <div class="trust-mobile-item">
+                        <h3>100% Live</h3>
+                        <p>Interactive Sessions</p>
+                    </div>
+                </div>
+                <div class="trust-mobile-track track-left" aria-hidden="true">
+                    <div class="trust-mobile-item">
+                        <h3>4.9★</h3>
+                        <p>Average Rating</p>
+                    </div>
+                    <div class="trust-mobile-item">
+                        <h3>2,49,497+</h3>
+                        <p>Learners Reached</p>
+                    </div>
+                    <div class="trust-mobile-item">
+                        <h3>11+ Years</h3>
+                        <p>Training Experience</p>
+                    </div>
+                    <div class="trust-mobile-item">
+                        <h3>100% Live</h3>
+                        <p>Interactive Sessions</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
