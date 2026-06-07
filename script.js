@@ -152,11 +152,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     lightbox.classList.add("active");
                     document.body.style.overflow = "hidden"; // disable scrolling
                 }
+            });
         });
     }
 
     // 5. Stat Counter Count-up on Scroll (Desktop only)
     const statNumbers = document.querySelectorAll(".stat-number");
+    console.log("Stat Counter initialized. Elements found:", statNumbers.length);
     
     // Indian number formatting helper (e.g., 2,49,497)
     function formatIndianNumber(num) {
@@ -169,13 +171,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const observerOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.05
     };
 
     const statsObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
+            console.log("Observer entry intersecting:", entry.isIntersecting);
             if (entry.isIntersecting) {
+                console.log("Triggering count-up animation!");
                 startCounting();
                 observer.unobserve(entry.target);
             }
@@ -184,7 +187,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const trustBanner = document.querySelector(".trust-banner");
     if (trustBanner && statNumbers.length > 0) {
+        console.log("Observing trust banner...");
         statsObserver.observe(trustBanner);
+    } else {
+        console.log("Observing trust banner failed. Banner found:", !!trustBanner);
     }
 
     function startCounting() {
@@ -195,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const isIndian = stat.getAttribute("data-format") === "indian";
             const duration = 1800; // 1.8 seconds animation
             const startTime = performance.now();
+            console.log(`Stat counter starting for target: ${target}, isIndian: ${isIndian}`);
 
             function updateNumber(now) {
                 const elapsed = now - startTime;
@@ -228,6 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         finalValue = target.toString();
                     }
                     stat.textContent = finalValue + suffix;
+                    console.log(`Stat counter complete for target: ${target}`);
                 }
             }
             

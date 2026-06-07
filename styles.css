@@ -143,6 +143,7 @@ section {
     width: max-content;
     gap: 40px;
     padding-right: 40px;
+    flex-shrink: 0;
 }
 
 /* Animations using GPU acceleration */
@@ -493,6 +494,7 @@ header {
         width: max-content;
         gap: 50px;
         padding-right: 50px;
+        flex-shrink: 0;
     }
     .trust-mobile-item {
         flex-shrink: 0;
